@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.holder{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: fit-content;
+    border-radius: 10px;
+
+    box-shadow: 1px 2px 9px #F4AAB9;
+    /* margin: '4em';
+    padding: '1em'; */
+}
+
+.poster{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.holder:hover .text{
+    opacity: 1;
+}
+
+.poster img{
+    width:200px;
+    border-radius: 10px;
+    display: block;
+}
+
+.text {
+    position: absolute;
+    /* bottom: 0; */
+    
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.678); /* Black see-through */
+    color: #f1f1f1;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+
+    font-size: 14px;
+    padding: 20px;
+    border-radius: 10px;
+    height: 100%;
+
+    margin: 0px;
+    padding: 2vw;
+    overflow: hidden;
+}
+
+
+.text .movietitle{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    font-size: 1rem;
+}
+.text h5{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.text p{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    height: 100px;
+    overflow-y: hidden;
+}
+.text span{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    height: 8%;
+}
+
+.text button{
+    background-color: #e30000b9;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px 8px;
+    transition: 0.3s;
+}
+.text button:hover {
+    background-color: rgb(255, 33, 33);
+    color: white;
+}

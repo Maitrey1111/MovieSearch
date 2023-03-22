@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.searchbarHolder{
+    padding: 26vh 0 3vh 0;
+}
+
+.searchbar{
+    margin: 0vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2vw;
+}
+
+.choicesholder{
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5vh;
+}
+
+.filterform{
+    display: flex;
+    column-gap: 3vw;
+    align-items: center;
+    justify-content: center;
+}

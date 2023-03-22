@@ -1,0 +1,21 @@
+.landingpage{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right:0;
+    left:0;
+    background-image: url("../../public/netflix-cover.jpg");
+    width: 100%;
+    overflow-y: scroll;
+    /* height: 100%; */
+}
+
+.compsholder{
+    /* height: 100vh; */
+    /* position: absolute; */
+    top:0;
+    bottom: 0;
+    right:0;
+    left:0;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.77), rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.77), rgba(0, 0, 0, 0.77) );
+}
