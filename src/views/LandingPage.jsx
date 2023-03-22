@@ -14,13 +14,10 @@ function LandingPage({ movieData }) {
   const [genre, setGenre] = useState("");
   const [releaseYear, setReleaseYear] = useState("");
 
-  const func = () => {
-    console.log(query, "---");
-  };
+
   return (
     <div className="landingpage">
       <div className="compsholder">
-        {/* {func()} */}
         <Navbar />
         <SearchBar
           setQuery={setQuery}

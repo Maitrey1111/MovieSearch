@@ -3,20 +3,11 @@ import { useEffect, useState } from "react";
 
 import TextField from "@mui/material/TextField";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
-
-import { styled } from "@mui/material/styles";
-import { purple } from "@mui/material/colors";
 
 import { genreList } from "../static/GenreList.js";
 import "../static/SearchBar.css";
