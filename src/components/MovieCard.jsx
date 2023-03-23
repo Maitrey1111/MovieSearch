@@ -1,10 +1,10 @@
 import {React} from "react";
 import "../static/MovieCard.css";
 
-function MovieCard({posterPath, title, date, description, rating}) {
+function MovieCard({posterPath, title, date, description, rating, movieId}) {
   const url = "https://www.themoviedb.org/t/p/w220_and_h330_face/" + posterPath;
   return (
-    <a href="/" className="holder">
+    <a href="/" rel="noreferrer" className="holder">
       <div className="poster">
         <img src={url} alt="img_poster" />
       </div>

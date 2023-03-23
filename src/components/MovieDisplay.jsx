@@ -85,9 +85,8 @@ function MovieDisplay({ searchQuery, rating, genre, releaseYear }) {
           displayData.push(movie);
         }
       }
-
     });
-    
+
     if (genre || releaseYear || rating) {
       if (displayData.length > 0) {
         return (
@@ -100,7 +99,8 @@ function MovieDisplay({ searchQuery, rating, genre, releaseYear }) {
                     title={movie.title}
                     date={movie.release_date}
                     description={movie.overview}
-                    rating = {movie.vote_average / 2}
+                    rating={movie.vote_average / 2}
+                    movieId={movie.id}
                   />
                 </div>
               );
@@ -128,7 +128,8 @@ function MovieDisplay({ searchQuery, rating, genre, releaseYear }) {
                       title={movie.title}
                       date={movie.release_date}
                       description={movie.overview}
-                      rating = {movie.vote_average / 2}
+                      rating={movie.vote_average / 2}
+                      movieId={movie.id}
                     />
                   </div>
                 );
