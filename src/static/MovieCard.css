@@ -91,17 +91,18 @@
     height: 8%;
 }
 
-.text button{
+.text a{
     background-color: #e30000b9;
     border: none;
     border-radius: 5px;
     color: white;
     text-align: center;
     font-size: 16px;
+    text-decoration: none;
     padding: 8px 8px;
     transition: 0.3s;
 }
-.text button:hover {
+.text a:hover {
     background-color: rgb(255, 33, 33);
     color: white;
 }
