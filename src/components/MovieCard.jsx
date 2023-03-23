@@ -23,7 +23,7 @@ function MovieCard({posterPath, title, date, description, rating, movieId}) {
       .catch((error) => {
         console.log(error);
       });
-  }, [movieId]);
+  });
 
   return (
     <a href="/" rel="noreferrer" className="holder">
