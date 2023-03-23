@@ -10,7 +10,7 @@
     width: 200px;
     height: fit-content;
     border-radius: 10px;
-
+    
     box-shadow: 1px 2px 9px #F4AAB9;
     /* margin: '4em';
     padding: '1em'; */
@@ -18,6 +18,7 @@
 
 .poster{
     display: flex;
+    width: 200px;
     justify-content: center;
     align-items: center;
 }
@@ -50,12 +51,12 @@
     row-gap: 10px;
 
     font-size: 14px;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 10px;
     height: 100%;
 
     margin: 0px;
-    padding: 2vw;
+    padding: 2vw;   
     overflow: hidden;
 }
 
@@ -104,3 +105,38 @@
     background-color: rgb(255, 33, 33);
     color: white;
 }
+
+@media only screen and (max-width: 600px) {
+    .holder {
+      width: 90vw;
+      height: fit-content;
+      text-decoration: none;
+      background-color: #000000;
+      /* padding: 0px 10px; */
+      column-gap: 10px;
+    }
+    .poster img{
+        padding: 10px 0px;
+        width: 150px;
+        height: 100%;
+    }
+    .text{
+        width: 80vw;
+        height: fit-content;
+        opacity: 1;
+        position: relative;
+        overflow: visible;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        row-gap: 7px;
+        /* column-gap: 30px; */
+    }
+    .text p{
+        display: none;
+    }
+    .text span{
+        display: none;
+    }
+  }
+

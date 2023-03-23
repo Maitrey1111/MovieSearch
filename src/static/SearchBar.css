@@ -17,7 +17,6 @@
 
 .choicesholder{
     color: white;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,3 +30,20 @@
     align-items: center;
     justify-content: center;
 }
+
+@media only screen and (max-width: 600px) {
+    .filterform {
+      flex-direction: column;
+      row-gap: 3vh;
+    }
+    #demo-select-small{
+        width: 45vw;
+    }
+    .searchbarHolder{
+        padding: 37vh 0 10vh 0;
+    }
+    
+    #outlined-search{
+        width: 70vw;
+    }
+  }

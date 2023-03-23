@@ -1,50 +1,44 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 
-import MovieCard from "./MovieCard";
+import MovieCard from "./MovieCard.jsx";
 import "../static/MovieDisplay.css";
 
-function MovieDisplay({ movieData, searchQuery, rating, genre, releaseYear }) {
-  const func = () => {
-    console.log(movieData, rating, genre, releaseYear);
-  };
-
+function MovieDisplay({ searchQuery, rating, genre, releaseYear }) {
+  const [movieData, setMovieData] = useState([]);
   const [searchedMov, setSearchedMov] = useState([]);
 
-  // let urls = [
-  //   "https://api.themoviedb.org/3/movie/popular?api_key=98ae3afcd7b18c25ccd2d93f00f88c42",
-  //   "https://api.themoviedb.org/3/movie/popular?api_key=98ae3afcd7b18c25ccd2d93f00f88c42",
-  //   "https://api.themoviedb.org/3/movie/popular?api_key=98ae3afcd7b18c25ccd2d93f00f88c42",
-  // ];
+  const popularData = { heading: "Popular Movies" };
+  const searchedData = { heading: "Your Search Results" };
 
-  // useEffect(() => {
-  //   const requests = urls.map((url) => axios.get(url));
-  //   axios
-  //     .all(requests)
-  //     .then((responses) => {
-  //       responses.forEach((resp) => {
-  //         console.info(1);
-  //       });
-  //     })
-  //     .catch((errors) => {
-  //       errors.forEach((error) => {
-  //         console.info(1);
-  //       });
-  //     });
-  // }, [searchQuery]);
+  //popular movies are shown
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/popular?api_key=98ae3afcd7b18c25ccd2d93f00f88c42"
+      )
+      .then((resp) => {
+        const data = resp.data.results;
+        setMovieData(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     if (searchQuery) {
       axios
         .get(
-          "https://api.themoviedb.org/3/search/movie?api_key="+ "98ae3afcd7b18c25ccd2d93f00f88c42" +"&language=en-US&query=" +
+          "https://api.themoviedb.org/3/search/movie?api_key=" +
+            "98ae3afcd7b18c25ccd2d93f00f88c42" +
+            "&language=en-US&query=" +
             searchQuery +
             "&include_adult=false"
         )
         .then((resp) => {
           const data = resp.data.results;
           if (data) setSearchedMov(data);
-          console.log(data, searchQuery);
         })
         .catch((error) => {
           console.log(error);
@@ -56,10 +50,10 @@ function MovieDisplay({ movieData, searchQuery, rating, genre, releaseYear }) {
     if (array.length > 0 && searchQuery) {
       var count1 = 0;
       var count2 = 0;
-      array.map((e) => {
+      array.forEach((e) => {
         if (e.poster_path) count1 += 1;
       });
-      array.map((e) => {
+      array.forEach((e) => {
         if (e.title) count2 += 1;
       });
       if (count1 > 0 && count2 > 0) {
@@ -69,42 +63,36 @@ function MovieDisplay({ movieData, searchQuery, rating, genre, releaseYear }) {
     return false;
   };
 
-  const searchedMovies = () => {
-    return (
-      <div className="searchresults">
-        <h3 style={{ fontSize: "1.5rem" }}>Your Search Results</h3>
-        <div className="movieflex">
-          {searchedMov.map((movie, i) => {
-            if (movie.title && movie.poster_path && movie.overview) {
-              // if(rating !== 0 && genre !== "" && releaseYear !== ""){
-              //   console.log("check");
-              //   if((movie.vote_average / 2) >= rating && (movie.release_date.split("-")[0] >= releaseYear) && movie.genre_ids.includes(genre)){
-                  return (
-                    <div key={i}>
-                      <MovieCard
-                        posterPath={movie.poster_path}
-                        title={movie.title}
-                        date={movie.release_date}
-                        description={movie.overview}
-                      />
-                    </div>
-                  );
-                // }
-              }
-            }
-          ) }
-        </div>
-      </div>
-    );
-  };
+  const display = (selectedData, metadata) => {
+    var displayData = [];
+    selectedData.forEach((movie) => {
+      if (movie.title && movie.poster_path && movie.overview) {
+        var flag = true;
+        if (genre || rating || releaseYear) {
+          if (genre) {
+            if (!movie.genre_ids.includes(genre)) flag = false;
+          }
+          if (rating) {
+            if (!(movie.vote_average / 2 >= rating)) flag = false;
+          }
+          if (releaseYear) {
+            if (!(movie.release_date.split("-")[0] >= releaseYear))
+              flag = false;
+          }
 
-  const simpleView = () => {
-    return (
-      <div className="popularmovies">
-        <h3 style={{ fontSize: "1.5rem" }}>Popular Movies</h3>
-        <div className="movieflex">
-          {movieData.map((movie, i) => {
-            if (movie.title && movie.poster_path && movie.overview) {
+          if (flag) displayData.push(movie);
+        } else {
+          displayData.push(movie);
+        }
+      }
+
+    });
+    
+    if (genre || releaseYear || rating) {
+      if (displayData.length > 0) {
+        return (
+          <div className="movieflex">
+            {displayData.map((movie, i) => {
               return (
                 <div key={i}>
                   <MovieCard
@@ -112,29 +100,57 @@ function MovieDisplay({ movieData, searchQuery, rating, genre, releaseYear }) {
                     title={movie.title}
                     date={movie.release_date}
                     description={movie.overview}
+                    rating = {movie.vote_average / 2}
                   />
                 </div>
               );
-            }
-          })}
-        </div>
-      </div>
-    );
+            })}
+          </div>
+        );
+      } else {
+        return (
+          <h3 style={{ textAlign: "center", paddingBottom: "2vh" }}>
+            {"<"} Results not Found {">"}
+          </h3>
+        );
+      }
+    } else {
+      if (displayData.length > 0) {
+        return (
+          <div>
+            <h3 style={{ fontSize: "1.5rem" }}>{metadata.heading}</h3>
+            <div className="movieflex">
+              {displayData.map((movie, i) => {
+                return (
+                  <div key={i}>
+                    <MovieCard
+                      posterPath={movie.poster_path}
+                      title={movie.title}
+                      date={movie.release_date}
+                      description={movie.overview}
+                      rating = {movie.vote_average / 2}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <h3 style={{ textAlign: "center" }}>
+            {"<"} Results not Found {">"}
+          </h3>
+        );
+      }
+    }
   };
 
   return (
     <div className="moviesholder">
-      {func()}
-      {isValid(searchedMov) ? (
-        searchedMovies()
-      ) : searchQuery ? (
-        <div>
-          <h3 style={{textAlign:"center"}}> {"<"} Results not Found {">"} </h3>
-          {simpleView()}
-        </div>
-      ) : (
-        simpleView()
-      )}
+      {isValid(searchedMov)
+        ? display(searchedMov, searchedData)
+        : display(movieData, popularData)}
     </div>
   );
 }

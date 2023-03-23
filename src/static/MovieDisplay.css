@@ -1,10 +1,11 @@
 .moviesholder{
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     row-gap: 5vh;
-    margin: 8vh 4vw;
+    margin: 0vh 4vw 5vh 4vw;
+    padding: 0vh 4vw 10vh 4vw;
     color: white;
 }
 
@@ -21,8 +22,5 @@
     column-gap: 4vw;
     row-gap: 8vh;
     flex-wrap: wrap;
-
-    /* width: 100%; */
     height: 100%;
-    /* margin: 0vh 4vw; */
 }
