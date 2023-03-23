@@ -15,7 +15,7 @@ function MovieDisplay({ searchQuery, rating, genre, releaseYear }) {
   useEffect(() => {
     axios
       .get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=98ae3afcd7b18c25ccd2d93f00f88c42"
+        "https://api.themoviedb.org/3/movie/popular?api_key="+ process.env.REACT_APP_TMDB_API_KEY
       )
       .then((resp) => {
         const data = resp.data.results;
@@ -31,7 +31,7 @@ function MovieDisplay({ searchQuery, rating, genre, releaseYear }) {
       axios
         .get(
           "https://api.themoviedb.org/3/search/movie?api_key=" +
-            "98ae3afcd7b18c25ccd2d93f00f88c42" +
+            process.env.REACT_APP_TMDB_API_KEY +
             "&language=en-US&query=" +
             searchQuery +
             "&include_adult=false"

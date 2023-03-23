@@ -4,7 +4,7 @@ import "../static/MovieCard.css";
 
 function MovieCard({posterPath, title, date, description, rating, movieId}) {
   const url = "https://www.themoviedb.org/t/p/w220_and_h330_face/" + posterPath;
-  const video_url = "https://api.themoviedb.org/3/movie/"+movieId+"/videos?api_key=98ae3afcd7b18c25ccd2d93f00f88c42&language=en-US"
+  const video_url = "https://api.themoviedb.org/3/movie/"+movieId+"/videos?api_key="+process.env.REACT_APP_TMDB_API_KEY+"&language=en-US"
 
   const [link, setLink] = useState()
 

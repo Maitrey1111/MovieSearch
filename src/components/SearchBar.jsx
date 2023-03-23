@@ -106,13 +106,16 @@ function SearchBar({
                     <MenuItem value={""}>
                       <em>select</em>
                     </MenuItem>
-                    {genreList.genres.forEach((genre, i) => {
+                    {genreList.genres.map((genre, i) => {
                       if (genre.name && genre.id) {
                         return (
                           <MenuItem key={i} value={genre.id}>
                             {genre.name}
                           </MenuItem>
                         );
+                      }
+                      else{
+                        return(<></>);
                       }
                     })}
                   </Select>
